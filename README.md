@@ -269,7 +269,7 @@ GitHub Actions pipeline includes:
 
 ## License
 
-MIT License — free to use, modify, and distribute.
+⚠️ This repository is proprietary. Viewing is allowed, but copying, modification, or redistribution is strictly prohibited.
 
 ---
 
