@@ -1,7 +1,9 @@
 <template>
   <div class="layout">
     <header class="header">
-      <h1>FocusFlow</h1>
+      <slot name="header">
+        <h1>FocusFlow</h1>
+      </slot>
     </header>
 
     <main class="content">

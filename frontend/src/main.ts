@@ -1,11 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import { router } from "./router";
-import { store } from "./store";
+import router from "./app/router";
+import { setupInterceptors } from "./app/http/interceptors";
 
-const app = createApp(App);
+setupInterceptors();
 
-app.use(router);
-app.use(store);
-
-app.mount("#app");
+createApp(App).use(router).mount("#app");
