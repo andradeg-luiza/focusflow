@@ -1,279 +1,67 @@
-# 🌟 FocusFlow — Productivity Reinvented
+# FocusFlow
 
-FocusFlow is a modern productivity web application designed to help people with difficulty maintaining routines, staying focused, and completing long-term tasks.  
-It combines **Kanban**, **time tracking**, **alerts**, **rewards**, and **cross-device synchronization** into a single, elegant experience.
+FocusFlow is a full‑stack monorepo designed to provide a clean, scalable foundation for building a modern productivity application.
 
-This repository contains the **full-stack monorepo** for FocusFlow:
-
-- **Frontend:** Vue 3 + Vite + TypeScript  
-- **Backend:** Fastify + TypeScript  
-- **Database:** SQLite (via Prisma ORM)  
-- **Auth:** JWT  
-- **Testing:** Vitest + Playwright  
-- **CI/CD:** GitHub Actions  
-- **Deploy:** Vercel (front) + Railway/Render (back)
-
----
-
-## Features
-
-### Authentication
-- User registration  
-- Login with JWT  
-- Secure password hashing  
-- Session persistence  
-- Logout  
-
-### Kanban Board
-- Four task states:
-  - **To Do**
-  - **Doing**
-  - **Paused**
-  - **Done**
-- Drag & drop between columns  
-- Real-time UI updates  
-
-### Smart Timer
-- Automatically starts when task enters **Doing**  
-- Pauses when moved to **Paused**  
-- Stops when moved to **Done**  
-- Accumulates time across days  
-- Fully synced across devices  
-
-### Alerts
-- Configurable alert intervals per task  
-- Sound notifications while task is active  
-- Pauses automatically  
-
-### Rewards System
-- Rewards per task  
-- Rewards per group of tasks  
-- Motivational animations  
-
-### Categories & Groups
-- Organize tasks by category  
-- Group tasks into projects  
-- Unlock group rewards when all tasks are completed  
-
----
-
-## Architecture Overview
+## 📁 Project Structure
 
 ```
-[ Browser ]
-     |
-     |  Vue 3 + Vite + TypeScript
-     |
-[ Fastify API ] --- Prisma ORM --- [ SQLite ]
+backend/   → Fastify API (TypeScript)
+frontend/  → Vue 3 + Vite (TypeScript)
+docs/      → Documentation (architecture, design, tests, etc.)
 ```
 
-### Backend Structure
-```
-backend/
-  src/
-    application/
-    domain/
-    infrastructure/
-    presentation/
-    middlewares/
-    tests/
-  prisma/
-```
+## 🛠️ Core Technologies
 
-### Frontend Structure
-```
-frontend/
-  src/
-    components/
-    router/
-    store/
-    assets/
-```
+- **Frontend:** Vue 3, Vite, TypeScript  
+- **Backend:** Fastify, TypeScript  
+- **ORM:** Prisma  
+- **Database:** SQLite (development)  
+- **Quality Tools:** ESLint, Prettier, Husky  
+- **Monorepo:** Organized for scalability and maintainability
 
----
+## 🚀 Getting Started
 
-## Database Schema (Simplified)
-
-### User
-```ts
-id: string
-name: string
-email: string
-passwordHash: string
-createdAt: Date
-```
-
-### Task
-```ts
-id: string
-userId: string
-title: string
-description?: string
-priority: 'low' | 'medium' | 'high'
-alertInterval: number
-reward?: string
-status: 'todo' | 'doing' | 'paused' | 'done'
-timeSpent: number
-timerStartedAt?: Date
-categoryId?: string
-groupId?: string
-createdAt: Date
-```
-
-### Category
-```ts
-id: string
-userId: string
-name: string
-```
-
-### Group
-```ts
-id: string
-userId: string
-name: string
-description?: string
-reward?: string
-```
-
-### GroupTask
-```ts
-groupId: string
-taskId: string
-```
-
----
-
-## Installation & Setup
-
-### 1. Clone the repository
+### 1. Install root dependencies
 ```bash
-git clone https://github.com/your-username/focusflow.git
-cd focusflow
+npm install
 ```
 
----
+### 2. Create environment file
+```bash
+cp .env.example .env
+```
 
-## Backend Setup
-
-### 2. Install dependencies
+### 3. Install backend dependencies
 ```bash
 cd backend
 npm install
 ```
 
-### 3. Create environment file
-```bash
-cp .env.example .env
-```
-
-### 4. Run Prisma migrations
-```bash
-npx prisma migrate dev
-```
-
-### 5. Start backend
-```bash
-npm run dev
-```
-
-Backend runs at:  
-**http://localhost:3333**
-
----
-
-## Frontend Setup
-
-### 1. Install dependencies
+### 4. Install frontend dependencies
 ```bash
 cd frontend
 npm install
 ```
 
-### 2. Start development server
-```bash
-npm run dev
+## 📚 Documentation
+
+Detailed documentation is available in:
+
+```
+docs/
 ```
 
-Frontend runs at:  
-**http://localhost:5173**
+Including:
+- Architecture  
+- Design  
+- Testing  
+- Technical decisions (ADR)
 
----
+## 📝 Useful Scripts
 
-## Testing
-
-### Unit tests
 ```bash
-npm run test
+npm run lint   # Run ESLint
 ```
 
-### End-to-end tests
-```bash
-npm run test:e2e
-```
-
----
-
-## CI/CD Pipeline
-
-GitHub Actions pipeline includes:
-
-- Lint  
-- Unit tests  
-- E2E tests  
-- Build frontend  
-- Build backend  
-- Deploy to:
-  - **Vercel** (frontend)
-  - **Railway/Render** (backend)
-
----
-
-## Roadmap
-
-### **Version 1.0 — MVP**
-- Login  
-- CRUD tasks  
-- Kanban  
-- Basic timer  
-- Persistence  
-
-### **Version 1.5 — Alerts**
-- Configurable alert intervals  
-- Sound notifications  
-
-### **Version 2.0 — Rewards**
-- Rewards per task  
-- Motivational animations  
-
-### **Version 2.5 — Groups & Categories**
-- Group tasks  
-- Group rewards  
-- Categories  
-
-### **Version 3.0 — Quality**
-- Full test suite  
-- CI/CD  
-- Performance improvements  
-
----
-
-## Contributing
-
-1. Fork the project  
-2. Create a feature branch  
-3. Commit your changes  
-4. Open a Pull Request  
-
----
-
-## License
-
-⚠️ This repository is proprietary. Viewing is allowed, but copying, modification, or redistribution is strictly prohibited.
-
----
-
-## Acknowledgements
-
-FocusFlow is built with love to help people stay focused, motivated, and in control of their time.
-
+## 📄 License
+Proprietary project. Restricted use.
