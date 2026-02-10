@@ -1,28 +1,16 @@
 {
   "name": "focusflow",
   "version": "1.0.0",
-  "description": "FocusFlow is a modern productivity web application designed to help people with difficulty maintaining routines, staying focused, and completing long-term tasks.  \r It combines **Kanban**, **time tracking**, **alerts**, **rewards**, and **cross-device synchronization** into a single, elegant experience.",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
+    "lint": "npm run lint -w frontend",
     "prepare": "husky install"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.0.0",
-    "eslint-plugin-vue": "^10.7.0",
-    "globals": "^17.3.0",
-    "husky": "^8.0.3",
-    "prettier": "^3.8.1",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.55.0",
-    "vue-eslint-parser": "^10.2.0"
+    "husky": "^9.0.0"
   }
 }
