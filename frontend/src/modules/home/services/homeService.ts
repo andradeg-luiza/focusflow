@@ -1,3 +1,3 @@
 export function getWelcomeMessage() {
-  return "Bem-vinda ao FocusFlow!";
+  return "Organize suas tarefas e mantenha o foco.";
 }

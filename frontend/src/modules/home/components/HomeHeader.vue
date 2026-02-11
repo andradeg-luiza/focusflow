@@ -1,6 +1,6 @@
 <template>
   <header class="home-header">
-    <h2>{{ title }}</h2>
+    <h2 class="home-title">{{ title }}</h2>
   </header>
 </template>
 
@@ -11,5 +11,9 @@ defineProps<{ title: string }>();
 <style scoped>
 .home-header {
   margin-bottom: 1rem;
+}
+
+.home-title {
+  font-weight: 600;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <section class="home-content">
-    <p>{{ message }}</p>
+    <p class="home-message">{{ message }}</p>
   </section>
 </template>
 
@@ -11,5 +11,9 @@ defineProps<{ message: string }>();
 <style scoped>
 .home-content {
   font-size: 1.1rem;
+}
+
+.home-message {
+  opacity: 0.9;
 }
 </style>
