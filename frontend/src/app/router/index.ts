@@ -16,10 +16,7 @@ const router = createRouter({
 });
 
 const privateRoutes = [
-  "dashboard",
   "tasks",
-  "pomodoro",
-  "calendar",
   "settings"
 ];
 
