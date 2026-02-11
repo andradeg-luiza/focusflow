@@ -4,27 +4,52 @@
       <h2>Tarefas</h2>
     </template>
 
-    <template #sidebar>
-      <nav>
-        <ul>
-          <li>Dashboard</li>
-          <li><strong>Tarefas</strong></li>
-          <li>Pomodoro</li>
-          <li>Calendário</li>
-        </ul>
-      </nav>
+    <template #actions>
+      <button class="new-task-btn" @click="showCreateModal = true">
+        + Nova tarefa
+      </button>
     </template>
 
-    <TaskForm :onSubmit="createTask" />
-    <TaskList :tasks="tasks" :toggle="toggle" :remove="remove" />
+    <KanbanBoard
+      :tasks="tasks"
+      @select="selectTask"
+    />
+
+    <TaskCreateModal
+      v-if="showCreateModal"
+      @create="createTask"
+      @close="showCreateModal = false"
+    />
   </AppLayout>
 </template>
 
 <script setup lang="ts">
 import AppLayout from "@/shared/layouts/AppLayout.vue";
-import TaskForm from "../components/TaskForm.vue";
-import TaskList from "../components/TaskList.vue";
+import KanbanBoard from "../components/KanbanBoard.vue";
+import TaskCreateModal from "../components/TaskCreateModal.vue";
+
 import { useTasks } from "../composables/useTasks";
 
-const { tasks, createTask, toggle, remove } = useTasks();
+const {
+  tasks,
+  showCreateModal,
+  createTask,
+  selectTask
+} = useTasks();
 </script>
+
+<style scoped>
+.new-task-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.new-task-btn:hover {
+  background: var(--primary-hover);
+}
+</style>

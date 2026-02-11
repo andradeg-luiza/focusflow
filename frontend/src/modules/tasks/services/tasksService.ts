@@ -1,29 +1,59 @@
 import type { Task } from "../models/TaskModel";
 
 let tasks: Task[] = [
-  { id: "1", title: "Estudar Vue 3", done: false, createdAt: new Date().toISOString() },
-  { id: "2", title: "Criar módulo de tarefas", done: true, createdAt: new Date().toISOString() }
+  {
+    id: "1",
+    title: "Estudar Vue 3",
+    status: "todo",
+    createdAt: new Date().toISOString(),
+    timeSpent: 0,
+    timerStartedAt: null,
+    alertInterval: null,
+    reward: 0
+  },
+  {
+    id: "2",
+    title: "Criar módulo de tarefas",
+    status: "doing",
+    createdAt: new Date().toISOString(),
+    timeSpent: 0,
+    timerStartedAt: null,
+    alertInterval: 25,
+    reward: 0
+  }
 ];
 
 export async function getTasks(): Promise<Task[]> {
   return tasks;
 }
 
-export async function addTask(title: string): Promise<Task> {
+export async function addTask(payload: {
+  title: string;
+  alertInterval: number | null;
+}): Promise<Task> {
   const newTask: Task = {
     id: crypto.randomUUID(),
-    title,
-    done: false,
-    createdAt: new Date().toISOString()
+    title: payload.title,
+    status: "todo",
+    createdAt: new Date().toISOString(),
+    timeSpent: 0,
+    timerStartedAt: null,
+    alertInterval: payload.alertInterval,
+    reward: 0
   };
 
   tasks.push(newTask);
   return newTask;
 }
 
-export async function toggleTask(id: string): Promise<void> {
+export async function updateTaskStatus(
+  id: string,
+  status: Task["status"]
+): Promise<void> {
   const task = tasks.find(t => t.id === id);
-  if (task) task.done = !task.done;
+  if (task) {
+    task.status = status;
+  }
 }
 
 export async function deleteTask(id: string): Promise<void> {
