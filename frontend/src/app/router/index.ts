@@ -2,10 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import { homeRoutes } from "@/modules/home/home.routes";
 import { authRoutes } from "@/modules/auth/auth.routes";
-import { dashboardRoutes } from "@/modules/dashboard/dashboard.routes";
 import { tasksRoutes } from "@/modules/tasks/tasks.routes";
-import { pomodoroRoutes } from "@/modules/pomodoro/pomodoro.routes";
-import { calendarRoutes } from "@/modules/calendar/calendar.routes";
 import { settingsRoutes } from "@/modules/settings/settings.routes";
 
 const router = createRouter({
@@ -13,10 +10,7 @@ const router = createRouter({
   routes: [
     ...homeRoutes,
     ...authRoutes,
-    ...dashboardRoutes,
     ...tasksRoutes,
-    ...pomodoroRoutes,
-    ...calendarRoutes,
     ...settingsRoutes
   ]
 });
