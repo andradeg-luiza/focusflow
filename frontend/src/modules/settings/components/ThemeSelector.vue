@@ -1,11 +1,11 @@
 <template>
   <div class="theme-selector">
-    <label>
+    <label class="theme-option">
       <input type="radio" value="light" v-model="model" />
       Claro
     </label>
 
-    <label>
+    <label class="theme-option">
       <input type="radio" value="dark" v-model="model" />
       Escuro
     </label>
@@ -20,5 +20,11 @@ const model = defineModel<"light" | "dark">();
 .theme-selector {
   display: flex;
   gap: 1rem;
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 </style>
