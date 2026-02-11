@@ -13,7 +13,7 @@
         v-for="task in tasks"
         :key="task.id"
         :task="task"
-        @click="onSelect(task)"
+        @click="handleCardClick(task)"
       />
     </div>
   </section>
@@ -27,16 +27,19 @@ const props = defineProps<{
   title: string;
   tasks: Task[];
   status: "todo" | "doing" | "paused" | "done";
-  onSelect?: (task: Task) => void;
 }>();
 
-// Evento emitido para o KanbanBoard
+// Eventos emitidos para o KanbanBoard
 const emit = defineEmits<{
   drop: [taskId: string, newStatus: string];
+  click: [task: Task];
 }>();
 
-function onSelect(task: Task) {
-  props.onSelect?.(task);
+// -----------------------------
+// CLIQUE NO CARD → abre modal
+// -----------------------------
+function handleCardClick(task: Task) {
+  emit("click", task);
 }
 
 // -----------------------------
