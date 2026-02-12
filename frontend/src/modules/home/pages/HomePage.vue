@@ -1,21 +1,39 @@
 <template>
-  <BaseLayout>
-    <template #header>
-      <HomeHeader :title="title" />
-    </template>
+  <div class="home-page">
+    <HomeHeader title="FocusFlow" />
+    <HomeContent message="Organize suas tarefas, mantenha o foco e evolua todos os dias." />
 
-    <HomeContent :message="message" />
-  </BaseLayout>
+    <div class="home-actions">
+      <router-link to="/tasks" class="btn">
+        Ir para minhas tarefas
+      </router-link>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import BaseLayout from "@/shared/layouts/BaseLayout.vue";
 import HomeHeader from "../components/HomeHeader.vue";
 import HomeContent from "../components/HomeContent.vue";
-
-import { useHome } from "../composables/useHome";
-import { getWelcomeMessage } from "../services/homeService";
-
-const { title } = useHome();
-const message = getWelcomeMessage();
 </script>
+
+<style scoped>
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.home-actions {
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+</style>

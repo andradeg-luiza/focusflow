@@ -33,7 +33,6 @@
 import AppLayout from "@/shared/layouts/AppLayout.vue";
 import SettingsSection from "../components/SettingsSection.vue";
 import ThemeSelector from "../components/ThemeSelector.vue";
-import PomodoroSettings from "../components/PomodoroSettings.vue";
 import { useSettings } from "../composables/useSettings";
 
 const { settings, updateTheme, updatePomodoroDuration } = useSettings();
