@@ -1,16 +1,13 @@
 export interface Task {
   id: string;
   title: string;
+  description?: string;
   status: "todo" | "doing" | "paused" | "done";
   createdAt: string;
 
-  // Timer
-  timeSpent: number; // em segundos
-  timerStartedAt: string | null;
-
-  // Alertas
-  alertInterval: number | null; // em minutos
-
-  // Recompensas
-  reward: number; // pontos
+  timeSpent: number;          // segundos acumulados
+  isRunning: boolean;         // timer ativo?
+  estimatedTime: number | null; // estimativa em minutos
+  alertInterval: number | null; // opcional, usado pelo sistema de alertas
+  reward: number;            // opcional
 }

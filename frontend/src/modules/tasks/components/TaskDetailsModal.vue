@@ -10,8 +10,8 @@
 
       <section class="modal__body">
         <p><strong>Status:</strong> {{ statusLabel }}</p>
-        <p><strong>Tempo:</strong> {{ formattedTime }}</p>
-        <p><strong>Recompensa:</strong> {{ task.reward }} pts</p>
+        <p><strong>Tempo:</strong> {{ formatTime(task.timeSpent) }}</p>
+        <p><strong>Recompensa:</strong> {{ task.reward ?? 0 }} pts</p>
 
         <div v-if="task.alertInterval" class="alert-info">
           ⏰ Alerta a cada {{ task.alertInterval }} min
@@ -20,7 +20,7 @@
 
       <footer class="modal__footer">
         <button class="btn" @click="toggleTimer">
-          {{ task.timerStartedAt ? "Pausar" : "Iniciar" }}
+          {{ task.isRunning ? "Pausar" : "Iniciar" }}
         </button>
 
         <button class="btn success" @click="completeTaskAction">
@@ -39,7 +39,6 @@
 import { computed, ref, watch } from "vue";
 import type { Task } from "../models/TaskModel";
 
-import { useTaskTimer } from "../composables/useTaskTimer";
 import { useTaskAlerts } from "../composables/useTaskAlerts";
 import { useTaskRewards } from "../composables/useTaskRewards";
 import { useTasks } from "../composables/useTasks";
@@ -49,19 +48,23 @@ const props = defineProps<{
   onClose: () => void;
 }>();
 
-const { moveTask, completeTask } = useTasks();
-const { start, pause } = useTaskTimer();
+const {
+  moveTask,
+  completeTask,
+  startTimer,
+  pauseTimer,
+  formatTime
+} = useTasks();
+
 const { startAlerts, stopAlerts } = useTaskAlerts();
 const { rewardForFocus, rewardForCompletion } = useTaskRewards();
 
 const editableTitle = ref(props.task.title);
 
-// Atualiza título ao editar
 watch(editableTitle, (newTitle) => {
   props.task.title = newTitle;
 });
 
-// Status traduzido
 const statusLabel = computed(() => {
   const map = {
     todo: "A Fazer",
@@ -72,30 +75,20 @@ const statusLabel = computed(() => {
   return map[props.task.status];
 });
 
-// Tempo formatado
-const formattedTime = computed(() => {
-  const total = props.task.timeSpent;
-  const m = Math.floor(total / 60);
-  const s = total % 60;
-  return `${m}m ${s}s`;
-});
-
-// Iniciar / Pausar timer
 function toggleTimer() {
-  if (props.task.timerStartedAt) {
-    pause(props.task);
+  if (props.task.isRunning) {
+    pauseTimer(props.task.id);
     stopAlerts();
     moveTask(props.task.id, "paused");
   } else {
-    start(props.task);
+    startTimer(props.task.id);
     if (props.task.alertInterval) startAlerts(props.task);
     moveTask(props.task.id, "doing");
   }
 }
 
-// Concluir tarefa
 function completeTaskAction() {
-  pause(props.task);
+  pauseTimer(props.task.id);
   stopAlerts();
 
   rewardForFocus(props.task);

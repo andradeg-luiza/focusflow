@@ -32,6 +32,7 @@ import { useTasks } from "../composables/useTasks";
 
 const {
   tasks,
+  selectedTask,
   showCreateModal,
   createTask,
   selectTask

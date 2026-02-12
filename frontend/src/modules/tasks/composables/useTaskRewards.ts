@@ -1,14 +1,18 @@
 import type { Task } from "../models/TaskModel";
 
 export function useTaskRewards() {
-  // Pontos por minuto focado
   const POINTS_PER_MINUTE = 2;
-
-  // Pontos por concluir tarefa
   const POINTS_ON_COMPLETE = 10;
 
-  // Recompensa por tempo focado
+  function ensureReward(task: Task) {
+    if (task.reward == null) {
+      task.reward = 0;
+    }
+  }
+
   function rewardForFocus(task: Task) {
+    ensureReward(task);
+
     const minutes = Math.floor(task.timeSpent / 60);
     const points = minutes * POINTS_PER_MINUTE;
 
@@ -16,13 +20,13 @@ export function useTaskRewards() {
     return points;
   }
 
-  // Recompensa por concluir tarefa
   function rewardForCompletion(task: Task) {
+    ensureReward(task);
+
     task.reward += POINTS_ON_COMPLETE;
     return POINTS_ON_COMPLETE;
   }
 
-  // Resetar pontos (caso queira usar futuramente)
   function resetRewards(task: Task) {
     task.reward = 0;
   }

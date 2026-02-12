@@ -6,8 +6,10 @@ let tasks: Task[] = [
     title: "Estudar Vue 3",
     status: "todo",
     createdAt: new Date().toISOString(),
+
     timeSpent: 0,
-    timerStartedAt: null,
+    isRunning: false,
+    estimatedTime: null,
     alertInterval: null,
     reward: 0
   },
@@ -16,8 +18,10 @@ let tasks: Task[] = [
     title: "Criar módulo de tarefas",
     status: "doing",
     createdAt: new Date().toISOString(),
+
     timeSpent: 0,
-    timerStartedAt: null,
+    isRunning: false,
+    estimatedTime: null,
     alertInterval: 25,
     reward: 0
   }
@@ -30,15 +34,18 @@ export async function getTasks(): Promise<Task[]> {
 export async function addTask(payload: {
   title: string;
   alertInterval: number | null;
+  estimatedTime?: number | null;
 }): Promise<Task> {
   const newTask: Task = {
     id: crypto.randomUUID(),
     title: payload.title,
     status: "todo",
     createdAt: new Date().toISOString(),
+
     timeSpent: 0,
-    timerStartedAt: null,
-    alertInterval: payload.alertInterval,
+    isRunning: false,
+    estimatedTime: payload.estimatedTime ?? null,
+    alertInterval: payload.alertInterval ?? null,
     reward: 0
   };
 

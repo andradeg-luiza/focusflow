@@ -6,8 +6,9 @@ export function useTaskAlerts() {
   const lastAlertAt = ref<number | null>(null);
   const intervalId = ref<number | null>(null);
 
-  // Inicia monitoramento de alertas
   function startAlerts(task: Task) {
+    if (!task.alertInterval) return;
+
     activeTask.value = task;
     lastAlertAt.value = Date.now();
 
@@ -27,7 +28,6 @@ export function useTaskAlerts() {
     }, 1000);
   }
 
-  // Pausa alertas
   function stopAlerts() {
     activeTask.value = null;
     lastAlertAt.value = null;
@@ -38,16 +38,10 @@ export function useTaskAlerts() {
     }
   }
 
-  // Dispara alerta (você decide como exibir depois)
   function triggerAlert(task: Task) {
     console.log(`🔔 Alerta da tarefa: ${task.title}`);
-    // Aqui você pode futuramente:
-    // - abrir modal
-    // - tocar som
-    // - enviar notificação
   }
 
-  // Se a tarefa ativa mudar, reinicia alertas
   watch(activeTask, (newTask) => {
     if (!newTask) {
       stopAlerts();

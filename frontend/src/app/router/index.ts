@@ -15,19 +15,21 @@ const router = createRouter({
   ]
 });
 
-const privateRoutes = [
-  "tasks",
-  "settings"
-];
+// const privateRoutes = [
+//   "tasks",
+//   "settings"
+// ];
 
-router.beforeEach((to, _, next) => {
-  const token = localStorage.getItem("focusflow-token");
+// router.beforeEach((to, _, next) => {
+//   const token = localStorage.getItem("focusflow-token");
 
-  if (privateRoutes.includes(to.name as string) && !token) {
-    return next("/login");
-  }
+//   if (privateRoutes.includes(to.name as string) && !token) {
+//     return next("/login");
+//   }
 
-  next();
-});
+//   next();
+// });
+
+router.beforeEach((_, __, next) => next());
 
 export default router;
