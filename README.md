@@ -1,67 +1,20 @@
+```markdown
 # FocusFlow
 
-FocusFlow is a full‑stack monorepo designed to provide a clean, scalable foundation for building a modern productivity application.
+## 📌 Active Version
+The active version of the project is **V2**, located at the root of the repository (`/backend`).
 
-## 📁 Project Structure
+This version represents the technical evolution of the project, built on a new architectural foundation.
 
-```
-backend/   → Fastify API (TypeScript)
-frontend/  → Vue 3 + Vite (TypeScript)
-docs/      → Documentation (architecture, design, tests, etc.)
-```
-
-## 🛠️ Core Technologies
-
-- **Frontend:** Vue 3, Vite, TypeScript  
-- **Backend:** Fastify, TypeScript  
-- **ORM:** Prisma  
-- **Database:** SQLite (development)  
-- **Quality Tools:** ESLint, Prettier, Husky  
-- **Monorepo:** Organized for scalability and maintainability
-
-## 🚀 Getting Started
-
-### 1. Install root dependencies
-```bash
-npm install
-```
-
-### 2. Create environment file
-```bash
-cp .env.example .env
-```
-
-### 3. Install backend dependencies
-```bash
-cd backend
-npm install
-```
-
-### 4. Install frontend dependencies
-```bash
-cd frontend
-npm install
-```
-
-## 📚 Documentation
-
-Detailed documentation is available in:
+## 🗂️ Legacy Version (V1)
+The previous version of the project is preserved at:
 
 ```
-docs/
+
+/legacy
+
 ```
 
-Including:
-- Architecture  
-- Design  
-- Testing  
-- Technical decisions (ADR)
-
-## 📝 Useful Scripts
-
-```bash
-npm run lint   # Run ESLint
+V1 is maintained strictly for historical and reference purposes.  
+It does not receive new features or bug fixes.
 ```
-
-## 📄 License
-Proprietary project. Restricted use.
