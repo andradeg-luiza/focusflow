@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: focusflow_postgres_v2
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: userdev
+      POSTGRES_PASSWORD: senhadev
+      POSTGRES_DB: focusflow_v2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
