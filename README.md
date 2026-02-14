@@ -1,4 +1,3 @@
-```markdown
 # FocusFlow
 
 ## 📌 Active Version
@@ -10,11 +9,9 @@ This version represents the technical evolution of the project, built on a new a
 The previous version of the project is preserved at:
 
 ```
-
 /legacy
 
 ```
 
 V1 is maintained strictly for historical and reference purposes.  
 It does not receive new features or bug fixes.
-```
