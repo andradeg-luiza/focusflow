@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -13,8 +14,11 @@ import { AuthModule } from './auth/auth.module'; // Diz ao Nest existe um módul
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-  imports: [AuthModule, PrismaModule], // O AppModule CONTAINS o AuthModule.
-  
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule,
+    AuthModule,
+  ],  
   controllers: [AppController], // Quais controllers pertencem ao root
   providers: [AppService], // Quais services pertencem ao root
 })

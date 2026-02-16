@@ -9,12 +9,13 @@
 
 
 import { Module } from '@nestjs/common'; // Descreve a estrutura do sistema. 
+import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
 // Contrato do módulo
 @Module({
   imports: [], // Quais outros módulos EU preciso para funcionar? // Futuro: PrismaModule e ConfigModule
-  controllers: [], // Quais portas HTTP pertencem a este módulo? //Depende do /auth/register
+  controllers: [AuthController], // Quais portas HTTP pertencem a este módulo? //Depende do /auth/register
   providers: [AuthService], // Quais serviços internos este módulo oferece?
   exports: [AuthService], // O que outros módulos podem usar de mim?
 })
